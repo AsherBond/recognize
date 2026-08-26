@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [13.1.0] - 2026-08-26
+
+### New
+
+ - feat(deps): Add Nextcloud 36 support
+
+### Fixed
+
+* fix(l10n): Update translations from Transifex
+* fix(nodejs): Upgrade shipped nodejs to v22
+* fix(ClusterFacesJob): Adjust clustering badge size to memory limit automatically
+* fix(FsActionService): Schedule ClusterFacesJob with userId casted to strings
+* fix: Fix admin page
+
 ## [13.0.0] - 2026-08-06
 
 ### Breaking changes

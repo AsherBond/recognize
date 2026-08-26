@@ -21,6 +21,7 @@ OC.L10N.register(
     "Checking FFmpeg" : "正在檢查 FFmpeg",
     "Cat" : "貓",
     "Architecture" : "架構",
+    "Building" : "建築物",
     "Farm" : "農場",
     "Landscape" : "風景",
     "Portrait" : "人像",

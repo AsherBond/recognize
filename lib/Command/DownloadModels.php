@@ -41,7 +41,9 @@ final class DownloadModels extends Command {
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output): int {
 		try {
-			$this->downloader->download();
+			$this->downloader->download(function (string $message) use ($output): void {
+				$output->writeln($message);
+			});
 		} catch (\Exception $ex) {
 			$output->writeln('<error>Failed to download models</error>');
 			$output->writeln($ex->getMessage());

@@ -23,6 +23,7 @@ final class DownloadModelsService {
 	}
 
 	/**
+	 * @param callable(string): void|null $log
 	 * @return void
 	 * @throws \Exception
 	 */

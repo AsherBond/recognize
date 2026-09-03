@@ -23,12 +23,16 @@ final class DownloadModelsService {
 	}
 
 	/**
+	 * @param callable(string): void|null $log
 	 * @return void
 	 * @throws \Exception
 	 */
-	public function download() : void {
+	public function download(?callable $log = null) : void {
+		$log ??= static function (string $message): void {
+		};
 		$targetPath = __DIR__ . '/../../models';
 		if (file_exists($targetPath)) {
+			$log('Removing existing models directory at ' . $targetPath);
 			// remove models directory
 			$it = new RecursiveDirectoryIterator($targetPath, FilesystemIterator::SKIP_DOTS);
 			$files = new RecursiveIteratorIterator($it,
@@ -45,8 +49,11 @@ final class DownloadModelsService {
 
 		$archiveUrl = $this->getArchiveUrl($this->getNeededArchiveRef());
 		$archivePath = __DIR__ . '/../../models.tar.gz';
+		$log('Downloading models archive from ' . $archiveUrl);
+		$log('Saving archive to ' . $archivePath);
 		$timeout = $this->isCLI ? 0 : 480;
 		$this->clientService->newClient()->get($archiveUrl, ['sink' => $archivePath, 'timeout' => $timeout]);
+		$log('Extracting models to ' . $targetPath);
 		$tarManager = new TAR($archivePath);
 		$tarFiles = $tarManager->getFiles();
 		$mainFolder = $tarFiles[0];
